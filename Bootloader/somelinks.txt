@@ -1,0 +1,7 @@
+https://blog.ghaiklor.com/how-to-implement-a-second-stage-boot-loader-80e75ae4270c
+
+https://stackoverflow.com/questions/2065370/how-to-load-second-stage-boot-loader-from-first-stage
+
+https://stackoverflow.com/questions/32893607/how-do-i-write-a-bin-file-512-bytes-to-the-first-sector-sector-0-of-a-floppy
+
+http://www.chrysocome.net/dd

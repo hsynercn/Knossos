@@ -50,7 +50,6 @@ loader:
 	mov	si, msg
 	call	Print
 
-							; get the amount of KB from the BIOS
 	mov	si, msg2
 	call	Print
 	
