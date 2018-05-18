@@ -5,3 +5,9 @@ https://stackoverflow.com/questions/2065370/how-to-load-second-stage-boot-loader
 https://stackoverflow.com/questions/32893607/how-do-i-write-a-bin-file-512-bytes-to-the-first-sector-sector-0-of-a-floppy
 
 http://www.chrysocome.net/dd
+
+https://superuser.com/questions/668485/creating-a-fat-file-system-and-save-it-into-a-file-in-gnu-linux
+
+https://untitledfinale.wordpress.com/2007/10/09/create-mount-and-copy-floppy-disks-images-under-linux
+
+https://bbs.archlinux.org/viewtopic.php?id=77385 /
