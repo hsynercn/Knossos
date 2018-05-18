@@ -11,3 +11,5 @@ https://superuser.com/questions/668485/creating-a-fat-file-system-and-save-it-in
 https://untitledfinale.wordpress.com/2007/10/09/create-mount-and-copy-floppy-disks-images-under-linux
 
 https://bbs.archlinux.org/viewtopic.php?id=77385 /
+
+https://www.richud.com/wiki/Ubuntu_Create_Floppy_Image
