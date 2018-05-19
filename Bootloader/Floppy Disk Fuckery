@@ -1,0 +1,17 @@
+
+Ok. I am using brokenthorn os tutorials for this project and tutorials mainly based on flopyy disk mounting and running on Boch. Page is from 2008 and most of the tools are deprecated for new Windows versions.
+
+To follow this tutorial on a newer environment we need alternative tools. Firstly use QUME as emulator. Secondly Bootloader section creates a bootloader for a FAT12 floppy disk. It uses two seperate executable bin file to represent a two stage bottloader. Normally you can creat a raw disk and write any file to anywhere on this disk with dd command both at Windows and Linux. But bootloader uses FAT12 properties to find second segment code on disk. It iterates through the enty table etc..
+
+On Ubuntu(WM) you can create and mount and floppy disk image but you cant write on it. https://ubuntuforums.org/showthread.php?t=2232347 i tried this but didn`t work for me.
+
+I found a simpler soluton for windows. Install MagicISO File->New->Disk Image->1.44, drag and drop the KRNLDR.SYS file(compiled second stage bin). Save the disk ima. And dd if=Boot1.bin of=disk.img conv=notrunc Your boot sector and FAT12 compitable second stage code is ready. Run QEMU with disk file.
+
+Short: 
+nasm -f bin Stage2.asm -o KRNLDR.SYS
+nasm -f bin Boot1.asm -o Boot1.bin
+
+MagicISO, copy KRNLDR.SYS to disk and save.
+
+dd if=Boot1.bin of=disk.img conv=notrunc 
+qemu-system-i386 -fda disk.img
