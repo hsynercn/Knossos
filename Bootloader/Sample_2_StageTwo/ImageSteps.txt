@@ -1,0 +1,7 @@
+nasm -f bin Stage2.asm -o KRNLDR.SYS
+nasm -f bin Boot1.asm -o Boot1.bin
+
+MagicISO, copy KRNLDR.SYS to disk and save test.ima, exit MagicISO.
+
+dd if=Boot1.bin of=test.ima conv=notrunc 
+qemu-system-i386 -fda test.ima
