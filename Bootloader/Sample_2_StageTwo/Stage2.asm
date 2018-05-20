@@ -49,6 +49,6 @@ main:
 ;	Data Section
 ;************************************************;
 
-Msg	db	"Preparing to load operating system...",13,10,0
+Msg	db	"Second stage started, preparing to load operating system...",13,10,0
 
 
