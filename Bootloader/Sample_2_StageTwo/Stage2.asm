@@ -36,19 +36,17 @@ PrintDone:
 
 main:
 	cli					; clear interrupts
-	push			cs		; Insure DS=CS
+	push		cs		; Insure DS=CS
 	pop			ds
 
 	mov			si, Msg
-	call			Print
+	call		Print
 
-	cli					; clear interrupts to prevent triple faults
-	hlt					; hault the syst
+	cli			; clear interrupts to prevent triple faults
+	hlt			; hault the syst
 
 ;*************************************************;
 ;	Data Section
 ;************************************************;
 
 Msg	db	"Second stage started, preparing to load operating system...",13,10,0
-
-
