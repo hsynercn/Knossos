@@ -26,7 +26,7 @@ EnableA20WithOut:
 	out	0x92, al
 	pop ax
 	ret
-
+	
 EnableA20WithInterrupt:
 	
 	pusha
@@ -44,7 +44,7 @@ DisableA20WithInterrupt:
 	ret	
 	
 WaitInputBufferFull:
-    in      al,0x64			;read status register
+	in      al,0x64			;read status register
     test    al,2			;test BIT1 (Input buffer status), dont write yet if 1
     jnz     InputBufferFull		;wait
 
