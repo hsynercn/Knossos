@@ -15,10 +15,8 @@ bits 16
 ;BIT 6:Time-out error (0 = no error, 1 = time-out error)
 ;BIT 7:Parity error (0 = no error, 1 = parity error)
 ;
-;*******************************************
-
-;*******************************************
 ;Enables the A20 for memory access, defines alternative methods
+;
 ;*******************************************
 
 EnableA20WithOut:
@@ -46,8 +44,8 @@ DisableA20WithInterrupt:
 	ret	
 	
 WaitInputBufferFull:
-    in      al,0x64			; read status register
-    test    al,2			; test bit 2 (Input buffer status), dont write yet
-    jnz     InputBufferFull	; jump if its not 0 (not empty) to continue waiting
+    in      al,0x64			;read status register
+    test    al,2			;test BIT1 (Input buffer status), dont write yet if 1
+    jnz     InputBufferFull		;wait
 
 %endif; ENABLEA20_INC
