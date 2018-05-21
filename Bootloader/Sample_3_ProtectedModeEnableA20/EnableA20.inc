@@ -43,9 +43,16 @@ DisableA20WithInterrupt:
 	popa
 	ret	
 	
-WaitInputBufferFull:
-	in      al,0x64			;read status register
-    test    al,2			;test BIT1 (Input buffer status), dont write yet if 1
-    jnz     InputBufferFull		;wait
+WaitBeforeRead:
+	in      al,0x64			    ;read status register
+    test    al,1			    ;test BIT0 (output buffer status), dont read yet if 0
+    jz     WaitBeforeRead
+    ret
 
+WaitBeforeWrite:
+    in al,0x64      ;read status
+    test al,2       ;test BIT1 (input buffer status), dont write yet if 1
+    jnz WaitBeforeWrite
+    ret
+    
 %endif; ENABLEA20_INC
