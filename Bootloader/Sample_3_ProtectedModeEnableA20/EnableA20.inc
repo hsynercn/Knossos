@@ -20,31 +20,29 @@ bits 16
 ;*******************************************
 
 EnableA20WithOut:
-
-	push ax
-	mov	al, 2
-	out	0x92, al
-	pop ax
-	ret
+    push ax
+    mov	al, 2
+    out	0x92, al
+    pop ax
+    ret
 	
 EnableA20WithInterrupt:
 	
-	pusha
-	mov ax, 0x2401
-	int 0x15
-	popa
-	ret
+    pusha
+    mov ax, 0x2401
+    int 0x15
+    popa
+    ret
 	
 DisableA20WithInterrupt:
-
-	pusha
-	mov ax, 0x2400
-	int 0x15
-	popa
-	ret	
+    pusha
+    mov ax, 0x2400
+    int 0x15
+    popa
+    ret	
 	
 WaitBeforeRead:
-	in      al,0x64			    ;read status register
+    in      al,0x64			    ;read status register
     test    al,1			    ;test BIT0 (output buffer status), dont read yet if 0
     jz     WaitBeforeRead
     ret
