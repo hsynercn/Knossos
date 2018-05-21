@@ -50,7 +50,7 @@ main:
 	;mov	al, 2	; set bit 2 (enable a20)
 	;out	0x92, al
 	
-	mov	si, EnableA20WithInterrupt
+	mov	si, EnableA20WithKeyboardController
 	call	Puts16
 	
 	call EnableA20
