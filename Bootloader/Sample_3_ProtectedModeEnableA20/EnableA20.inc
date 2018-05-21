@@ -18,28 +18,34 @@ bits 16
 ;*******************************************
 
 ;*******************************************
-;Enables the A20 for memory access, defined alternative methods
+;Enables the A20 for memory access, defines alternative methods
 ;*******************************************
 
 EnableA20WithOut:
 
+	push ax
 	mov	al, 2
 	out	0x92, al
+	pop ax
 	ret
 
 EnableA20WithInterrupt:
-
+	
+	push ax
 	mov ax, 0x2401
 	int 0x15
+	pop ax
 	ret
 	
 DisableA20WithInterrupt:
 
+	push ax
 	mov ax, 0x2400
 	int 0x15
+	pop ax
 	ret	
 	
-InputBufferFull:
+WaitInputBufferFull:
     in      al,0x64			; read status register
     test    al,2			; test bit 2 (Input buffer status), dont write yet
     jnz     InputBufferFull	; jump if its not 0 (not empty) to continue waiting
