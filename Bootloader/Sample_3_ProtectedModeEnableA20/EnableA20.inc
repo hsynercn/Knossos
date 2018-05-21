@@ -31,18 +31,18 @@ EnableA20WithOut:
 
 EnableA20WithInterrupt:
 	
-	push ax
+	pusha
 	mov ax, 0x2401
 	int 0x15
-	pop ax
+	popa
 	ret
 	
 DisableA20WithInterrupt:
 
-	push ax
+	pusha
 	mov ax, 0x2400
 	int 0x15
-	pop ax
+	popa
 	ret	
 	
 WaitInputBufferFull:
