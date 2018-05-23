@@ -97,8 +97,9 @@ Stage3:
 	mov		es, ax
 	mov		esp, 90000h		; stack begins from 90000h
 	
-	;call		ClrScr32
-	mov			ebx, msg
+	call		ClearScreen32
+	
+	mov			ebx, msg0
 	call		PrintString32
  
 ;*******************************************************
@@ -110,5 +111,13 @@ STOP:
 	cli
 	hlt
 	
-msg db  0x0A, 0x0A, 0x0A, "               <[ OS Development Series Tutorial 10 ]>"
-    db  0x0A, 0x0A,             "           Basic 32 bit graphics demo in Assembly Language", 0
+;msg db  0x0A, 0x0A, 0x0A, "               <[ OS Development Series Tutorial 10 ]>"
+;    db  0x0A, 0x0A,             "           Basic 32 bit graphics demo in Assembly Language", 0
+	
+msg0 db "  _  __",0x0A
+	db	" | |/ /",0x0A                            
+	db	" | ' / _ __   ___  ___ ___  ___  ___ ",0x0A
+	db	" |  < | '_ \ / _ \/ __/ __|/ _ \/ __|",0x0A
+	db	" | . \| | | | (_) \__ \__ \ (_) \__ \",0x0A
+	db	" |_|\_\_| |_|\___/|___/___/\___/|___/",0x0A,0x0A
+	db	" 32 bit graphics driver supported",0x0A,0                                   

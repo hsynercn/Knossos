@@ -6,7 +6,7 @@ bits 32
 %define	VIDMEM 0xB8000	;video buffer text mode
 %define	COLUNM_NUM	80		
 %define	ROW_NUM	25
-%define	CHAR_ATTRIB	63
+%define	CHAR_ATTRIB	00000010b
 
 _X db 0
 _Y db 0
@@ -26,7 +26,7 @@ PutChar32:
 	mov ecx, COLUNM_NUM*2
 	mov al,byte[_Y]
 	mul ecx
-	push ecx
+	push eax
 	
 	mov al,byte[_X]
 	mov cl,2
@@ -40,12 +40,10 @@ PutChar32:
 	cmp bl, 0x0A
 	je .nextLine
 	
-	xor ecx,ecx
-	mov cl,bl
-	mov ch,CHAR_ATTRIB
-	mov word[edi],cx
+	mov dl,bl
+	mov dh,CHAR_ATTRIB
+	mov word[edi],dx
 	
-.nextChar:
 	inc byte[_X]
 	cmp byte[_X],COLUNM_NUM
 	je .nextLine
@@ -83,3 +81,32 @@ PrintString32:
 	ret
 
 %endif ;STDIO32_INC
+
+;************************************************
+;	Clears screen in 32 bit mode
+;************************************************
+
+ClearScreen32:
+
+	pusha
+	
+	xor cx,cx
+	mov edi,VIDMEM
+	
+.fillNextChar:
+	mov ah,CHAR_ATTRIB
+	mov al, ' '
+	mov word[edi],ax
+	
+	add edi,2
+	add cx,1
+	
+	cmp cx, COLUNM_NUM*ROW_NUM
+	jne .fillNextChar
+	
+	mov byte[_X],0
+	mov byte[_Y],0
+	
+	popa
+	ret
+
