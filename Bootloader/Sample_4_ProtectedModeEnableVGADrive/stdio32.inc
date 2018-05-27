@@ -109,4 +109,40 @@ ClearScreen32:
 	
 	popa
 	ret
+    
+;************************************************
+;	Update the cursor position with CRT controller
+;	bl: Y position
+;	bh: X position
+;************************************************
+
+MoveCursor:
+
+	pusha
+	xor eax,eax
+	mov ecx, COLUNM_NUM
+	mov eax,bh
+	mul ecx
+	add eax,bh
+	
+	mov bx,ax
+	
+	mov al,0x0F
+	mov dx,0x03D4
+	out dx,al
+	
+	mov al,bl
+	mov dx,0x03D5
+	out dx,al
+	
+	xor ax,ax
+	mov	al, 0x0e
+	mov	dx, 0x03D4
+	out	dx, al
+ 
+	mov	al, bh
+	mov	dx, 0x03D5
+	out	dx, al
+	popa
+	ret
 
