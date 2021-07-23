@@ -1,2 +1,2 @@
 # Knossos
-OS/Bootloader
+OS Bootloader
